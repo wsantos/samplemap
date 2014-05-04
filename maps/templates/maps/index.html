@@ -1,0 +1,44 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mozio Map</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'maps/css/style.css' %}">
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=drawing"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <script>
+        var post_url = '{% url 'register' %}';
+        var search_url = '{% url 'search' %}';
+
+    </script>
+
+
+    <script src="{% static 'maps/js/csrftoken.js' %}"></script>
+    <script src="{% static 'maps/js/app.js' %}"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+     <!--<div id="map-data"> -->
+         <!--<h3>Edit Service Area</h3>-->
+
+
+     <!--</div>-->
+    <div id="map-canvas"></div>
+
+   <div id="shape_info">
+       <h3>Selected polygon points</h3>
+        <div id="points"></div>
+        <div id="actions">
+            <button id="delete-polygon" type="button">Delete polygon</button>
+        </div>
+   </div>
+
+
+</body>
+</html>

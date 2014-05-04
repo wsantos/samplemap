@@ -1,0 +1,12 @@
+Django==1.6.4
+Fabric==1.8.3
+MySQL-python==1.2.5
+ecdsa==0.11
+gnureadline==6.3.3
+gunicorn==18.0
+ipdb==0.8
+ipython==2.0.0
+paramiko==1.12.3
+pep8==1.5.6
+pycrypto==2.6.1
+wsgiref==0.1.2
