@@ -23,8 +23,17 @@
 
 1. Mysql 5.6+
 2. Nginx
-3. Ubuntu 14.04
-4. Supervisors
+3. Ubuntu 14.04 x64
+4. Supervisor
+
+```
+sudo apt-get install mysql-server-5.6 nginx supervisor
+```
+
+### Hardware Requirements
+
+1. At least 1GB mysql 5.6+ has problem with small machines <1GB.
+
 
 ### Installation
 
@@ -41,6 +50,8 @@
 #### Install code and dependencies
 
 	1. fab server setup
+	
+ps.: The script need some interation, in syncdb and collect static
 
 
 ### Know problems
@@ -51,7 +62,7 @@
 
 - GeoDjango tables must be MyISAM, so you need to setup django to create all tables in this database storage or create after syncdb you need to alter table to myisam and install manually the index
 
-- Django field MultyPolygon won't work in admin, so the admin is used only for delete operations.
+- Django field MultyPolygon won't work in **admin**, so the admin is used only for delete operations.
 
 ##### Table script
 
@@ -68,8 +79,8 @@ CREATE TABLE `maps_shapemodel` (
 
 ### Sugestions
 
-1. Use mongodb/postgres as geospatial database to archive better performance on this type of query, so in this database we will have the id and the polygons.
-
+- Use mongodb/postgres as geospatial database to archive better performance on this type of query, so in this database we will have the id and the polygons.
+ 
 ##### Sample query on mongodb
 
 ```
@@ -80,5 +91,9 @@ db.<collection>.find( { <location field> :
                                  coordinates : [ [ [ <lng1>, <lat1> ] , [ <lng2>, <lat2> ] ... ] ]
                       } } } } )
 ```
+
+- Freehand draw <http://jsfiddle.net/uF62D/1/> but it is easy to plug in current code.
+
+
 
 
