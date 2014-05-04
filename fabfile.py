@@ -22,6 +22,7 @@ config_path = os.path.realpath('deploy/supervisor/')
 config_file = os.path.basename(config_path)
 supervisor_etc_path = "/etc/supervisor/conf.d/"
 
+
 #
 # virtualenv functions
 #
@@ -30,6 +31,7 @@ def create_virtualenv():
     args = '--clear --no-site-packages --distribute'
     run('virtualenv %s %s' % (args, env.virtualenv_root))
 
+
 @_contextmanager
 def virtualenv():
     "Activate virtualenv"
@@ -37,12 +39,11 @@ def virtualenv():
         with prefix(env.activate):
             yield
 
+
 #
 # per machine options
 #
-
-
-def server() :
+def server():
     """This pushes to the EC2 instance defined below"""
     # The Elastic IP to your server
     env.host_string = '107.170.138.156'
@@ -72,10 +73,12 @@ def nginx_stop():
     "Stop nginx"
     run("service nginx stop")
 
+
 def nginx_enable_site(nginx_config_file):
     "Enable nginx site"
     with cd(nginx_enable_path):
         run('ln -s ' + nginx_avaliable_path + nginx_config_file)
+
 
 def nginx_disable_site(nginx_config_file):
     "Disable nginx site"
@@ -109,12 +112,17 @@ def setup():
     # update server sourcecode
     with cd(env.virtualenv_root):
         sudo('rm -fr %(directory)s' % env)
-        run('git clone https://github.com/wsantos/samplemap.git %(name)s' % env )
+        run('git clone https://github.com/wsantos/samplemap.git %(name)s' %env)
 
     # install requirements
     with cd(env.directory):
         with virtualenv():
             run("pip install -r requirements.txt")
+
+    # install database
+    with virtualenv():
+        run('python manage.py syncdb')
+        run('python manage.py collectstatic')
 
     # send supervisor confs
     for file_name in os.listdir(config_path):
