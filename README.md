@@ -2,7 +2,7 @@
 
 ## Overview
 
-- Currently live in <http://mozio.waldecir.com.br>
+- Currently live in <http://mozio.waldecir.com.br/maps/>
 
 ### Usage
 
