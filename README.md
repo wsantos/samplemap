@@ -2,8 +2,6 @@
 
 ## Overview
 
-- Currently live in <http://mozio.waldecir.com.br/maps/>
-
 ### Usage
 
 #### URL: /maps
